@@ -52,7 +52,8 @@ export default function Home() {
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file && file.type === 'text/csv') {
+    const validCsvTypes = ['text/csv', 'application/csv', 'text/plain', 'application/vnd.ms-excel'];
+    if (file && (validCsvTypes.includes(file.type) || file.name.toLowerCase().endsWith('.csv'))) {
       setUploadedFile(file);
     } else {
       alert("Please upload a valid CSV file");
